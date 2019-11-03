@@ -1,0 +1,44 @@
+.container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 75%;
+    margin: 0 auto;
+    z-index: 2;
+   
+    
+}
+.top {
+    margin-top: 10px;
+}
+
+ion-thumbnail {
+    --size: 70%;
+    margin: 0 auto;
+}
+
+ion-slides {
+    height: 100%;
+
+    .slide-inner {
+        width: 75%;
+        color: #fff;
+        background-color: #000;
+        border-radius: 10px;
+
+        ion-item {
+            --background: #fff;
+            --border-radius: 10px;
+            margin-bottom: 10px;
+
+            ion-input {
+                --color: gray;
+                
+            }
+        }
+    }
+    .title{
+        margin: 10px;
+    }
+}
+
