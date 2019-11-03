@@ -1,6 +1,6 @@
 <ion-content>
 
-  <div class="container top">
+  <div class="container">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -9,10 +9,9 @@
           </ion-thumbnail>
         </ion-col>
       </ion-row>
-    </ion-grid>
-  </div>
 
-  <!--ion-segment (ionChange)="segmentChanged($event)" mode="ios" value="login">
+
+      <!--ion-segment (ionChange)="segmentChanged($event)" mode="ios" value="login">
     <ion-segment-button mode="ios" value="login">
       <ion-label>Login</ion-label>
     </ion-segment-button>
@@ -22,52 +21,52 @@
   </ion-segment-->
 
 
+      <ion-row>
+        <ion-col>
+          <ion-slides>
+            <ion-slide>
+              <div class="slide-inner ion-padding">
+                <span class="title">Login</span>
 
-  <ion-slides>
-    <ion-slide>
-      <div class="slide-inner ion-padding">
-        <span class="title">Login</span>
+                <ion-item class="ion-margin-top" lines="none">
+                  <ion-input type="matricula" placeholder="Matrícula"></ion-input>
+                </ion-item>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="matricula" placeholder="Matrícula"></ion-input>
-        </ion-item>
+                <ion-item lines="none">
+                  <ion-input type="password" placeholder="Senha"></ion-input>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-input type="password" placeholder="Senha"></ion-input>
-        </ion-item>
+                <ion-button (click)="login()" color="light" expand="block">
+                  Entrar
+                </ion-button>
+              </div>
+            </ion-slide>
 
-        <ion-button (click)="login()" color="light" expand="block">
-          Entrar
-        </ion-button>
-      </div>
-    </ion-slide>
+            <ion-slide #slider>
+              <div class="slide-inner ion-padding">
+                <span>Cadastro</span>
 
-    <ion-slide #slider>
-      <div class="slide-inner ion-padding">
-        <span>Cadastro</span>
+                <ion-item class="ion-margin-top" lines="none">
+                  <ion-input type="text" placeholder="Nome" [(ngModel)]="nome_cadastro"></ion-input>
+                </ion-item>
 
-        <ion-item class="ion-margin-top" lines="none">
-          <ion-input type="text" placeholder="Nome" [(ngModel)]="nome_cadastro"></ion-input>
-        </ion-item>
+                <ion-item lines="none">
+                  <ion-input type="number" placeholder="Matrícula" [(ngModel)]="matricula_cadastro"></ion-input>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-input type="number" placeholder="Matrícula" [(ngModel)]="matricula_cadastro"></ion-input>
-        </ion-item>
+                <ion-item lines="none">
+                  <ion-input type="password" placeholder="Senha" [(ngModel)]="senha_cadastro"></ion-input>
+                </ion-item>
 
-        <ion-item lines="none">
-          <ion-input type="password" placeholder="Senha" [(ngModel)]="senha_cadastro"></ion-input>
-        </ion-item>
+                <ion-button (click)="register()" color="light" expand="block">
+                  Cadastrar
+                </ion-button>
+              </div>
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-        <ion-button (click)="register()" color="light" expand="block">
-          Cadastrar
-        </ion-button>
-      </div>
-    </ion-slide>
-  </ion-slides>
-
-
-
-
-
-
+  </div>
 </ion-content>

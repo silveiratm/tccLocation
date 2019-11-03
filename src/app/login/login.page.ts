@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 //import { IonSlides } from '@ionic/angular';
 
 @Component({
@@ -12,7 +13,9 @@ export class LoginPage implements OnInit {
   public matricula_cadastro: string = "";
   public senha_cadastro: string = "";
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
 }
 
   ngOnInit() {
@@ -20,6 +23,10 @@ export class LoginPage implements OnInit {
 
   register(){
     console.log('OK');
+  }
+
+  login(){
+    this.router.navigate(['tabs']);
   }
 
   //Botões pra fazer ação slide
