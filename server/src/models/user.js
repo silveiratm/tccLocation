@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-    matricula: {
+    registration: {
         type: Number,
         required: true
     },
-    nome: {
+    name: {
         type: String,
         required: true
     },
@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    autenticacao: {
+    authentication: {
         type: Boolean,
         required: true
     }

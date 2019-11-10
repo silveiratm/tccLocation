@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const requireDir = require('require-dir');
 
 // Iniciando o App
 const app = express();
@@ -15,10 +16,10 @@ mongoose.connect(uri, { useNewUrlParser: true }, (error)=>{
     }
 });
 
+requireDir('./src/models');
 
-// Primeira rota
-app.get("/", (req, res) => {
-   res.send('Hello nodemon');
-});
+
+// Rotas
+app.use('/api', require('./src/routes'));
 
 app.listen(3001);
