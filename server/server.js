@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 //app.use(express.urlencoded({ extended: false }));
 
+
 // Iniciando o DB
 // Colocar URL de acesso ao Banco
 var url = "";

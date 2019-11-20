@@ -46,21 +46,33 @@
               <div class="slide-inner ion-padding">
                 <span>Cadastro</span>
 
-                <ion-item class="ion-margin-top" lines="none">
-                  <ion-input type="text" placeholder="Nome" [(ngModel)]="nome_cadastro"></ion-input>
-                </ion-item>
+                <form [formGroup]="registerForm">
+                  <ion-item class="ion-margin-top" lines="none">
+                    <ion-input type="text" placeholder="Nome" formControlName="name_register"></ion-input>
+                    
+                  </ion-item>
+                  <div class="validators" *ngIf="registerForm.controls.name_register.errors">
+                    <small *ngIf="registerForm.controls.name_register.errors.required">Esse campo é obrigatorio</small>
+                  </div>
 
-                <ion-item lines="none">
-                  <ion-input type="number" placeholder="Matrícula" [(ngModel)]="matricula_cadastro"></ion-input>
-                </ion-item>
+                  <ion-item lines="none">
+                    <ion-input type="number" placeholder="Matrícula" formControlName="registration_register"></ion-input>
+                  </ion-item>
+                  <div class="validators" *ngIf="registerForm.controls.registration_register.errors">
+                    <small *ngIf="registerForm.controls.registration_register.errors.required">Esse campo é obrigatorio</small>
+                  </div>
 
-                <ion-item lines="none">
-                  <ion-input type="password" placeholder="Senha" [(ngModel)]="senha_cadastro"></ion-input>
-                </ion-item>
+                  <ion-item lines="none">
+                    <ion-input type="password" placeholder="Senha" formControlName="password_register"></ion-input>
+                  </ion-item>
+                  <div class="validators" *ngIf="registerForm.controls.password_register.errors">
+                    <small *ngIf="registerForm.controls.password_register.errors.required">Esse campo é obrigatorio</small>
+                  </div>
 
-                <ion-button (click)="register()" color="light" expand="block">
-                  Cadastrar
-                </ion-button>
+                  <ion-button type="submit" (click)="register()" color="light" expand="block" [disabled]="!registerForm.valid">
+                    Cadastrar
+                  </ion-button>
+                </form>
               </div>
             </ion-slide>
           </ion-slides>

@@ -9,6 +9,10 @@
     
 }
 
+.validators {
+    margin-bottom: 10px;
+}
+
 ion-thumbnail {
     --size: 70%;
     margin: 0 auto;
@@ -26,7 +30,7 @@ ion-slides {
         ion-item {
             --background: #fff;
             --border-radius: 10px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
 
             ion-input {
                 --color: gray;
