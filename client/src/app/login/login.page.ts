@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserService } from '../services/user.service';
 //import { IonSlides } from '@ionic/angular';
 //import {userService} from '../services/userService';
@@ -18,7 +18,13 @@ export class LoginPage implements OnInit {
     password_register: ""
   }
 
+  loginForm = new FormGroup({
+    registration_login: new FormControl(''),
+    password_login: new FormControl(''),
+  });
+
   public registerForm: FormGroup;
+  
 
   constructor(
     private router: Router,
@@ -49,16 +55,22 @@ export class LoginPage implements OnInit {
     const data = this.registerForm.value;
 
     console.log(data);
-    //userService.post('/user', data)
+    //this.userService.register(data)
 
   }
 
   login(){
 
-    this.userService.login();
+    
+
+    //this.userService.login(this.loginForm.value);
+    console.log(this.loginForm.value);
 
 
     //this.router.navigate(['home']);
+  }
+  formControl(formControl: any) {
+    throw new Error("Method not implemented.");
   }
 
   //Botões pra fazer ação slide
