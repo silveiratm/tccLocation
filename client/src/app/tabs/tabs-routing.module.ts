@@ -24,12 +24,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'zone',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+              import('../zone/zone.module').then(m => m.ZonePageModule)
           }
         ]
       },

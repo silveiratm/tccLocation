@@ -1,5 +1,7 @@
 {
   "name": "tccLocation",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

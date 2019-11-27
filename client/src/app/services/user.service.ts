@@ -21,9 +21,9 @@ export class UserService {
     });
   }
 
-  login(){
+  login(id){
  
-     this.http.get(this.apiUrl + '/user/5dc87b5ad8b9804b8ca0bd30').pipe(map(res=> {console.log(res)})).subscribe(result => { console.log(result) });
+     this.http.get(this.apiUrl + '/user/' + id).pipe(map(res=> {console.log(res)})).subscribe(result => { console.log(result) });
   }
 
 }

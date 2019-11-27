@@ -28,17 +28,19 @@
               <div class="slide-inner ion-padding">
                 <span class="title">Login</span>
 
-                <ion-item class="ion-margin-top" lines="none">
-                  <ion-input type="matricula" placeholder="Matrícula"></ion-input>
-                </ion-item>
+                <form [formGroup]="loginForm">
+                  <ion-item class="ion-margin-top" lines="none">
+                    <ion-input type="matricula" placeholder="Matrícula" formControlName="registration_login"></ion-input>
+                  </ion-item>
 
-                <ion-item lines="none">
-                  <ion-input type="password" placeholder="Senha"></ion-input>
-                </ion-item>
+                  <ion-item lines="none">
+                    <ion-input type="password" placeholder="Senha" formControlName="password_login"></ion-input>
+                  </ion-item>
 
-                <ion-button (click)="login()" color="light" expand="block">
-                  Entrar
-                </ion-button>
+                  <ion-button (click)="login()" color="light" expand="block">
+                    Entrar
+                  </ion-button>
+                </form>
               </div>
             </ion-slide>
 

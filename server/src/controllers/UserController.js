@@ -13,8 +13,11 @@ module.exports = {
 
     //Retorna 1 usuario
     async login(req, res){
+        let registration = req.body.registration
+        let password = req.body.password
+
         try{
-            const user = await User.findById(req.params.id);
+            const user = await User.findOne({registration});
 
             return res.json(user);
         } catch(err) {
