@@ -13,15 +13,25 @@ module.exports = {
 
     //Retorna 1 usuario
     async getOne(req, res){
-        let name = req.body.name
+        let name = req.params.name
 
         try{
             const zone = await Zone.findOne({name});
 
-            return res.json(zone);
+            return res.json({name: zone});
         } catch(err) {
             return res.status(204).send({ error: 'não encontrado' });
         }
+
+        // Por ID 
+
+        // try{
+        //     const zone = await Zone.findById(req.params.id);
+
+        //     return res.json(zone);
+        // } catch(err) {
+        //     return res.status(204).send({ error: 'não encontrado' });
+        // }
     },
 
     //Cadastra usuario

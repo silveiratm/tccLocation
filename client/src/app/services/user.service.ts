@@ -21,9 +21,19 @@ export class UserService {
     });
   }
 
-  login(id){
+  login(login){
+
+    
  
-     this.http.get(this.apiUrl + '/user/' + id).pipe(map(res=> {console.log(res)})).subscribe(result => { console.log(result) });
+    //  this.http.post(this.apiUrl + '/user/login', JSON.stringify(login)).pipe(map(res=> 
+    //   {console.log(res)})).subscribe(result => { console.log(result) });
+
+    
+
+    var resposta = this.http.post(this.apiUrl + '/user/login', login);
+
+    return resposta;
+
   }
 
 }

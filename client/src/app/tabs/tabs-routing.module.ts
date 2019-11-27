@@ -6,7 +6,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/home/tab1',
+    redirectTo: '/home/chart',
     pathMatch: 'full'
   },
   {
@@ -14,12 +14,12 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'chart',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+              import('../chart/chart.module').then(m => m.ChartPageModule)
           }
         ]
       },

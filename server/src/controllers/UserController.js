@@ -17,9 +17,9 @@ module.exports = {
         let password = req.body.password
 
         try{
-            const user = await User.findOne({registration});
+            const user = await User.findOne({registration, password});
 
-            return res.json(user);
+            return res.status(200).json(user);
         } catch(err) {
             return res.status(204).send({ error: 'Usuario incorreto' });
         }

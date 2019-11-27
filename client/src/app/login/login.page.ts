@@ -63,8 +63,8 @@ export class LoginPage implements OnInit {
 
     
 
-    //this.userService.login(this.loginForm.value);
-    console.log(this.loginForm.value);
+    const test = this.userService.login(this.loginForm.value).subscribe();
+    console.log(test);
 
 
     //this.router.navigate(['home']);
