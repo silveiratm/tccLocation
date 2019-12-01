@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, NgForm } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/User';
 //import { IonSlides } from '@ionic/angular';
 //import {userService} from '../services/userService';
 
@@ -12,66 +15,102 @@ import { UserService } from '../services/user.service';
 })
 export class LoginPage implements OnInit {
   //public slides: IonSlides;
-  public user = {
-    name_register: "",
-    registration_register: "",
-    password_register: ""
-  }
 
-  loginForm = new FormGroup({
-    registration_login: new FormControl(''),
-    password_login: new FormControl(''),
-  });
+  // loginForm = new FormGroup({
+  //   registration: new FormControl(''),
+  //   password: new FormControl(''),
+  // });
 
+  public loginForm: FormGroup;
   public registerForm: FormGroup;
-  
+  name: string = "";
+  registration: number = null;
+  password: string = ""
+
+  users: User[] = [];
 
   constructor(
     private router: Router,
     private userService: UserService,
+    private http: HttpClient,
+    private fBuilder: FormBuilder
 
-    private fBuilder: FormBuilder) {
-      this.registerForm = this.fBuilder.group({
-        'name_register': [this.user.name_register, Validators.compose([
-          Validators.required
-        ])],
-        'registration_register': [this.user.registration_register, Validators.compose([
-          Validators.required
-        ])],
-        'password_register': [this.user.password_register, Validators.compose([
-          Validators.required
-        ])]
-      })
-}
+  ) {
+
+  }
+
 
   ngOnInit() {
+    this.registerForm = this.fBuilder.group({
+      'name': [null, Validators.required],
+      'registration': [null, Validators.required],
+      'password': [null, Validators.required]
+    })
+    this.loginForm = this.fBuilder.group({
+      'registration': [null, Validators.required],
+      'password': [null, Validators.required]
+    })
   }
 
-  register(){
-    //Validação
-    this.registerForm.valid
 
+  async getUsers() {
 
-    const data = this.registerForm.value;
-
-    console.log(data);
-    //this.userService.register(data)
-
+    await this.userService.getUsers()
+      .subscribe(res => {
+        this.users = res;
+        console.log(this.users);
+      }, err => {
+        console.log(err);
+      });
   }
 
-  login(){
-
-    
-
-    const test = this.userService.login(this.loginForm.value).subscribe();
-    console.log(test);
-
-
-    //this.router.navigate(['home']);
+  async register(form: NgForm) {
+    await this.userService.register(form)
+      .subscribe(res => {
+        console.log(res);
+        if (res) {
+          this.router.navigate(['home/chart/' + res.registration]);
+        }
+      }, (err) => {
+        console.log(err);
+      });
   }
-  formControl(formControl: any) {
-    throw new Error("Method not implemented.");
+
+  async login(form: NgForm) {
+    await this.userService.login(form)
+      .subscribe(res => {
+        console.log(res);
+        if (res) {
+          //console.log("aqui:" + res.registration);
+          this.router.navigate(['home/chart/' + res.registration]);
+        }
+      }, (err) => {
+        console.log(err);
+      });
   }
+
+  //login() {
+
+
+  //console.log(JSON.stringify(this.loginForm.value))
+
+  //this.userService.login(JSON.stringify(this.loginForm.value)).subscribe(x => console.log(x));
+
+  // login = async () => {
+  //   const response = await fetch(this.apiUrl + '/user');
+  //   const body = await response.json();
+  //   if (response.status !== 200) throw Error(body.message);
+
+  //   console.log(body)
+  //   return body;
+  // };
+
+
+
+  //this.router.navigate(['home']);
+  //}
+
+
 
   //Botões pra fazer ação slide
   /*segmentChanged(event: any) {
@@ -83,5 +122,5 @@ export class LoginPage implements OnInit {
     }
   }
   */
-  
+
 }

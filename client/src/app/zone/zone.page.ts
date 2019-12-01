@@ -1,6 +1,9 @@
 import { Component, ViewChild, ElementRef, OnInit, AfterContentInit } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
+import { ZoneService } from '../services/zone.service';
 declare var google: any;
 
 @Component({
@@ -14,11 +17,20 @@ export class ZonePage implements OnInit {
   drawingManager: any;
   savedPolygon: any;
 
+  zoneName: string = ' ';
+
   @ViewChild('map', { static: true }) mapElement;
 
 
+  value = 0;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private modalController: ModalController,
+    private zoneService: ZoneService
+    ) { }
+
+    
 
   ngOnInit() {
     this.initMap();
@@ -54,7 +66,6 @@ export class ZonePage implements OnInit {
       }
 
     });
-    console.log(this.drawingManager);
     this.drawingManager.setMap(this.map);
 
     google.maps.event.addListener(this.drawingManager, 'polygoncomplete', function(polygon: any) {
@@ -67,21 +78,49 @@ export class ZonePage implements OnInit {
         console.log(splitted[0]);*/
 
         console.log(path.getAt(i).toUrlValue(6));
+        
 
 
         //this.savedPolygon[i] = path.getAt(i).toUrlValue(6);
       };
-      var name = window.prompt("Insira o nome da Zona.");
-      console.log(name);
+     
+
+      
+      this.zoneName = window.prompt("Insira o nome da Zona.");
+      console.log(this.zoneName);
+      
+      // (VER)  CHAMAR FUNÇÃO DENTRO DO LISTENER
+
+      // this.zoneService.register(this.zoneName)
+      // .subscribe(res => {
+      //   console.log(res);
+      // }, (err) => {
+      //   console.log(err);
+      // });
+
+     
       
     });
-    
 
+    if(this.zoneName !== ' '){
+      this.saveZone();
+    }
+
+  }
+
+  async openModal(){
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        custom_id: this.value
+      }
+    });
+    modal.present();
   }
 
   saveZone(){
     
-      console.log(this.savedPolygon);
+    console.log("AQUI2");
     
   }
 

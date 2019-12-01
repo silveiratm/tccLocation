@@ -1,39 +1,52 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, catchError, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { User } from '../models/User'
+
+const httpOptions = {
+  headers: new  HttpHeaders({'Content-Type': 'application/json'})
+};
+
+const apiUrl = 'http://localhost:3001/api/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  apiUrl = 'http://localhost:3001/api';
-
   constructor(public http: HttpClient) { }
 
-  register(data) {
-    return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl + '/user', JSON.stringify(data)).subscribe(res => {
-        resolve(res);
-      }, (err) => {
-        reject(err);
-      });
-    });
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      return of(result as T);
+    };
   }
 
-  login(login){
 
+  getUsers (): Observable<User[]> {
+    return this.http.get<User[]>(apiUrl)
+      .pipe(
+        tap(heroes => console.log('fetched users')),
+        catchError(this.handleError('getUsers failed', []))
+      );
+  }
+  
+
+  register (user): Observable<User> {
+    return this.http.post<User>(apiUrl, user, httpOptions).pipe(
+      tap((user: User) => console.log(`register successfully registration=${user.registration}`)),
+      catchError(this.handleError<User>('register failed'))
+    );
+  }
+
+  login(user): Observable<any>{
     
- 
-    //  this.http.post(this.apiUrl + '/user/login', JSON.stringify(login)).pipe(map(res=> 
-    //   {console.log(res)})).subscribe(result => { console.log(result) });
-
-    
-
-    var resposta = this.http.post(this.apiUrl + '/user/login', login);
-
-    return resposta;
-
+    return this.http.post<User>(apiUrl + '/login', user, httpOptions).pipe(
+      tap((user: User) => console.log(`login successfully registration=${user.registration}`)),
+      catchError(this.handleError<User>('login failed'))
+    );
   }
 
 }

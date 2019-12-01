@@ -20,6 +20,11 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../chart/chart.module').then(m => m.ChartPageModule)
+          },
+          {
+            path: ':registration',
+            loadChildren: () =>
+              import('../chart/chart.module').then(m => m.ChartPageModule)
           }
         ]
       },
