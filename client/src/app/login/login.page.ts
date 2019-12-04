@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/User';
 //import { IonSlides } from '@ionic/angular';
-//import {userService} from '../services/userService';
 
 @Component({
   selector: 'app-login',
