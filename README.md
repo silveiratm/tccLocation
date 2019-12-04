@@ -15,7 +15,7 @@
   </li>
   <li>Para rodar o servidor entre na pasta <b>tccLocation/server</b> e rode:
     <ul>
-      <li><b>npm install</b (Instala as dependências)</li>
+      <li><b>npm install</b> (Instala as dependências)</li>
         <li><b>npm dev run</b> (Roda o servidor)</li>
     </ul>
   </li>

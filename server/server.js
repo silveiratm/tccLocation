@@ -7,12 +7,12 @@ const requireDir = require('require-dir');
 const app = express();
 app.use(express.json());
 app.use(cors());
-//app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 
 
 // Iniciando o DB
 // Colocar URL de acesso ao Banco
-var url = "";
+var url = "mongodb+srv://admin:dbm4321pass@tcc-cluster-a3vzz.gcp.mongodb.net/test?retryWrites=true&w=majority";
 mongoose.connect(url, { useNewUrlParser: true }, (error)=>{
     if(!error){
         console.log("Banco está conectado!");

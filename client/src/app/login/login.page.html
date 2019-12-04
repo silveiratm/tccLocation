@@ -27,17 +27,24 @@
             <ion-slide>
               <div class="slide-inner ion-padding">
                 <span class="title">Login</span>
+                <span #test id="test"></span>
 
-                <form [formGroup]="loginForm">
+                <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
                   <ion-item class="ion-margin-top" lines="none">
-                    <ion-input type="matricula" placeholder="Matrícula" formControlName="registration_login"></ion-input>
+                    <ion-input type="matricula" placeholder="Matrícula" formControlName="registration"></ion-input>
                   </ion-item>
+                  <div class="validators" *ngIf="loginForm.controls.registration.errors">
+                    <small *ngIf="loginForm.controls.registration.errors.required">Esse campo é obrigatorio</small>
+                  </div>
 
                   <ion-item lines="none">
-                    <ion-input type="password" placeholder="Senha" formControlName="password_login"></ion-input>
+                    <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
                   </ion-item>
+                  <div class="validators" *ngIf="loginForm.controls.password.errors">
+                    <small *ngIf="loginForm.controls.password.errors.required">Esse campo é obrigatorio</small>
+                  </div>
 
-                  <ion-button (click)="login()" color="light" expand="block">
+                  <ion-button type="submit" color="light" expand="block" [disabled]="!loginForm.valid">
                     Entrar
                   </ion-button>
                 </form>
@@ -48,30 +55,29 @@
               <div class="slide-inner ion-padding">
                 <span>Cadastro</span>
 
-                <form [formGroup]="registerForm">
+                <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
                   <ion-item class="ion-margin-top" lines="none">
-                    <ion-input type="text" placeholder="Nome" formControlName="name_register"></ion-input>
-                    
+                    <ion-input type="text" placeholder="Nome" formControlName="name"></ion-input>
                   </ion-item>
-                  <div class="validators" *ngIf="registerForm.controls.name_register.errors">
-                    <small *ngIf="registerForm.controls.name_register.errors.required">Esse campo é obrigatorio</small>
+                  <div class="validators" *ngIf="registerForm.controls.name.errors">
+                    <small *ngIf="registerForm.controls.name.errors.required">Esse campo é obrigatorio</small>
                   </div>
 
                   <ion-item lines="none">
-                    <ion-input type="number" placeholder="Matrícula" formControlName="registration_register"></ion-input>
+                    <ion-input type="number" placeholder="Matrícula" formControlName="registration"></ion-input>
                   </ion-item>
-                  <div class="validators" *ngIf="registerForm.controls.registration_register.errors">
-                    <small *ngIf="registerForm.controls.registration_register.errors.required">Esse campo é obrigatorio</small>
+                  <div class="validators" *ngIf="registerForm.controls.registration.errors">
+                    <small *ngIf="registerForm.controls.registration.errors.required">Esse campo é obrigatorio</small>
                   </div>
 
                   <ion-item lines="none">
-                    <ion-input type="password" placeholder="Senha" formControlName="password_register"></ion-input>
+                    <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
                   </ion-item>
-                  <div class="validators" *ngIf="registerForm.controls.password_register.errors">
-                    <small *ngIf="registerForm.controls.password_register.errors.required">Esse campo é obrigatorio</small>
+                  <div class="validators" *ngIf="registerForm.controls.password.errors">
+                    <small *ngIf="registerForm.controls.password.errors.required">Esse campo é obrigatorio</small>
                   </div>
 
-                  <ion-button type="submit" (click)="register()" color="light" expand="block" [disabled]="!registerForm.valid">
+                  <ion-button type="submit" color="light" expand="block" [disabled]="!registerForm.valid">
                     Cadastrar
                   </ion-button>
                 </form>

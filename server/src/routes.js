@@ -7,7 +7,7 @@ const PolygonController = require('./controllers/PolygonController');
 
 
 //Usuario
-routes.get("/user", UserController.index);
+routes.get("/user", UserController.getUsers);
 routes.post("/user/login", UserController.login);
 routes.post("/user", UserController.register);
 

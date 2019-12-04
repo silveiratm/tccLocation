@@ -5,7 +5,7 @@ const User = mongoose.model('User');
 module.exports = {
 
     //Retorna todos os usuários
-    async index(req, res){
+    async getUsers(req, res){
         const user = await User.find();
 
         return res.json(user);
