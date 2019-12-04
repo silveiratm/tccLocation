@@ -23,7 +23,6 @@
 
 <h4>
     OBS: <b>client/src/index.html</b> Colocar a chave de API Google Maps <br/>
-    OBS: <b>server/server.js</b> Colocar String de conexão MongoDB Cloud
 </h4>
 
 

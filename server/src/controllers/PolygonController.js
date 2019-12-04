@@ -16,7 +16,7 @@ module.exports = {
         let name = req.body.name
 
         try{
-            const polygon = await Plygon.findOne({name});
+            const polygon = await Polygon.findOne({name});
 
             return res.json(polygon);
         } catch(err) {
