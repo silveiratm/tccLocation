@@ -26,6 +26,14 @@ export class ZoneService {
     };
   }
 
+  getAll (): Observable<Zone[]> {
+    return this.http.get<Zone[]>(apiUrl)
+      .pipe(
+        tap(zone => console.log('fetched Locations')),
+        catchError(this.handleError('getAll failed', []))
+      );
+  }
+
   getOne(id){
     this.http.get(this.apiUrl + '/zone/' + id).pipe(map(res=> {console.log(res)})).subscribe(result => { console.log(result) });
   }

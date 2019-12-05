@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 
-const Polygon = mongoose.model('Polygon');
+const Location = mongoose.model('Location');
 
 module.exports = {
 
     //Retorna todos os usuários
     async getAll(req, res){
-        const polygon = await Polygon.find();
+        const location = await Location.find();
 
-        return res.json(polygon);
+        return res.json(location);
     },
 
     //Retorna 1 usuario
@@ -16,9 +16,9 @@ module.exports = {
         let name = req.body.name
 
         try{
-            const polygon = await Polygon.findOne({name});
+            const location = await Location.findOne({name});
 
-            return res.json(polygon);
+            return res.json(location);
         } catch(err) {
             return res.status(204).send({ error: 'não encontrado' });
         }
@@ -26,8 +26,8 @@ module.exports = {
 
     //Cadastra usuario
     async register(req, res){
-        const polygon = await Polygon.create(req.body);
+        const location = await Location.create(req.body);
 
-        return res.json(polygon);
+        return res.json(location);
     }
 };
